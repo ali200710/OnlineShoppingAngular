@@ -1,0 +1,46 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+
+        <label [class.text-danger]="userName?.touched && userName?.invalid" for="exampleInputEmail1"
+            class="form-label">User Name</label>
+        <input [class.is-invalid]="userName?.touched && userName?.invalid" type="email" formControlName="userName"
+            class="form-control" id="exampleInputEmail1">
+
+        <small *ngIf="userName?.touched && userName?.errors?.['required']" class="text-danger">required</small>
+    </div>
+
+    <div class="mb-3">
+
+        <label [class.text-danger]="email?.touched && email?.invalid" for="email11" class="form-label">
+            email
+        </label>
+        <input [class.is-invalid]="email?.touched && email?.invalid" type="email" formControlName="email"
+            class="form-control" id="email11">
+
+        <div *ngIf="email?.touched && email?.invalid">
+            <small *ngIf="email?.touched && email?.errors?.['required']" class="text-danger">required</small>
+            <small *ngIf="email?.touched && email?.errors?.['email']" class="text-danger">must be email</small>
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label [class.text-danger]="password?.touched && password?.invalid" for="exampleInputPassword1"
+            class="form-label">Password</label>
+        <input [class.is-invalid]="password?.touched && password?.invalid" type="password" formControlName="password"
+            class="form-control" id="exampleInputPassword1">
+        <small *ngIf="password?.touched && password?.errors?.['required']" class="text-danger">required</small>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label [class.text-danger]="age?.touched && age?.invalid" for="age1" class="form-label">age</label>
+        <input [class.is-invalid]="age?.touched && age?.invalid" type="email" formControlName="age" class="form-control"
+            id="age1">
+
+        <small *ngIf="age?.touched && age?.errors?.['required']" class="text-danger">required</small>
+    </div>
+
+    <button [disabled]="loginForm.invalid" class="btn btn-primary">Submit</button>
+</form>

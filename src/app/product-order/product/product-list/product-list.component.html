@@ -1,0 +1,42 @@
+<a class="btn btn-primary" routerLink="/product/add"> add new product </a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">product name</th>
+            <th scope="col">product price</th>
+            <th scope="col">photo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products; let i=index;">
+            <td> {{product.productName}} </td>
+            <td> {{product.productPrice}} </td>
+            <td> <img height="40" width="50" [src]="url+product.imgUrl"> </td>
+
+            <td *ngIf="!isAdmin"><button (click)="addToCart(product.id)" class="btn btn-primary">add to cart</button>
+            </td>
+            <td *ngIf="isAdmin"><button [routerLink]="['/product',product.id]" class="btn btn-secondary">edit</button>
+            </td>
+            <td *ngIf="isAdmin">
+                <button *ngIf="!confirmDelete || indexDeleted!=i" (click)="confirmDelete=true; indexDeleted=i"
+                    class="btn btn-danger">delete</button>
+
+                <div *ngIf="confirmDelete && indexDeleted == i">
+                    <button (click)="onDelete(product.id)" class="btn btn-danger">confirm delete</button>
+                    <button (click)="confirmDelete=false;" class="btn btn-secondary ">cancel</button>
+
+                </div>
+
+            </td>
+
+
+
+        </tr>
+    </tbody>
+</table>
+
+
+<app-order [productToOrder]="product">
+
+</app-order>

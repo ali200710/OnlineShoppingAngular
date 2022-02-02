@@ -1,0 +1,26 @@
+<p>final order deatails</p>
+<div class="row">
+
+    <ul *ngIf="orderDetails.length>0" class="list-group">
+
+        <li *ngFor="let item of orderDetails;let i=index;" class="list-group-item">
+
+
+            <small> <small style="color:red">product name:</small> {{item?.productName}} </small>,
+            <small> <small style="color:red">quantity:</small> {{item?.quantity}} </small>,
+
+            <small> <small style="color:blue">total price:</small> {{item?.totalPrice}} </small>
+
+
+        </li>
+
+    </ul>
+</div>
+
+
+<div *ngIf="orderDetails.length>0">
+    <h1> total purchase is: {{totalPriceForAll }} </h1>
+
+
+    <button [disabled]="orderDetails.length==0" (click)="onSubmit()" type="btn btn-primary"> submit this order </button>
+</div>
